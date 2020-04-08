@@ -1,6 +1,9 @@
 import React, { createContext, useReducer } from 'react';
+import steak from '../imgs/steak.jpg';
 
-const initCart = [];
+const initCart = [
+  { id: '1', name: 'Steak', img: steak, price: 125, amount: 2 },
+];
 
 const cartReducer = (state, action) => {
   switch (action.type) {

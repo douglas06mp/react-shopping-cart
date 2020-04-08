@@ -1,13 +1,15 @@
 import React from 'react';
-import steak from '../imgs/steak.jpg';
 
-export default function Cart() {
+export default function Cart({ id, name, img, price, amount }) {
   return (
     <div className="w-full flex bg-white rounded shadow-md">
-      <img className="inline-block" src={steak} alt="steak" />
+      <img className="inline-block" src={img} alt="steak" />
       <div className="w-full px-4 py-4 flex flex-col justify-between">
         <div>
-          <h3 className="text-2xl">Steak</h3>
+          <div className="flex justify-between mb-4">
+            <h3 className="text-2xl">{name}</h3>
+            <p className="text-xl font-bold">${price}</p>
+          </div>
           <p className="text-lg">
             Lorem tincidunt eget nullam non nisi est sit.
           </p>
@@ -16,7 +18,7 @@ export default function Cart() {
           <button className="bg-orange-500 hover:bg-orange-700 text-white text-sm rounded-full py-1 px-2 mr-2">
             <i className="fas fa-plus"></i>
           </button>
-          <span className="text-xl font-bold">5</span>
+          <span className="text-xl font-bold">{amount}</span>
           <button className="bg-orange-500 hover:bg-orange-700 text-white text-sm rounded-full py-1 px-2 mx-2">
             <i className="fas fa-minus"></i>
           </button>
