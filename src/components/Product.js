@@ -1,16 +1,13 @@
 import React from 'react';
-import steak from '../imgs/steak.jpg';
-import lemon from '../imgs/lemon.jpg';
-import sandwich from '../imgs/sandwich.jpg';
 
-export default function Product() {
+export default function Product({ id, name, img, price }) {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
-      <img className="w-full" src={steak} alt="Sunset in the mountains" />
+      <img className="w-full" src={img} alt="Sunset in the mountains" />
       <div className="px-4 py-4">
         <div className="flex justify-between">
-          <div className="font-bold text-l mb-2">Steak</div>
-          <div className="">$25</div>
+          <div className="font-bold text-l mb-2">{name}</div>
+          <div className="">${price}</div>
         </div>
         <form className="flex justify-between">
           <input type="number" className="w-3/4" value="0" />
