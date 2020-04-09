@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from './cartAction';
+import { INCREMENT, DECREMENT, DELETION } from './cartAction';
 
 export const cartReducer = (state, action) => {
   let newState;
@@ -21,13 +21,21 @@ export const cartReducer = (state, action) => {
       }
     case DECREMENT:
       targetProduct = findProduct(state, action.id);
-      newState = [
-        ...otherProduct(state, action.id),
-        {
-          ...targetProduct,
-          amount: +targetProduct.amount - 1,
-        },
-      ];
+      if (targetProduct.amount > 1) {
+        newState = [
+          ...otherProduct(state, action.id),
+          {
+            ...targetProduct,
+            amount: +targetProduct.amount - 1,
+          },
+        ];
+        return sortById(newState);
+      } else {
+        newState = [...otherProduct(state, action.id)];
+        return sortById(newState);
+      }
+    case DELETION:
+      newState = [...otherProduct(state, action.id)];
       return sortById(newState);
     default:
       return state;
