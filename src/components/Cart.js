@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DispatchContext } from '../context/cart.context';
+import { increment } from '../context/cartAction';
 
 export default function Cart({ id, name, img, price, amount }) {
+  const dispatch = useContext(DispatchContext);
+
+  const onIcrement = () => {
+    const product = {
+      id,
+      amount: 1,
+    };
+    dispatch(increment(product));
+  };
+
   return (
     <div className="w-full flex bg-white rounded shadow-md">
       <img className="inline-block" src={img} alt="steak" />
@@ -15,7 +27,10 @@ export default function Cart({ id, name, img, price, amount }) {
           </p>
         </div>
         <div className="self-end">
-          <button className="bg-orange-500 hover:bg-orange-700 text-white text-sm rounded-full py-1 px-2 mr-2">
+          <button
+            onClick={onIcrement}
+            className="bg-orange-500 hover:bg-orange-700 text-white text-sm rounded-full py-1 px-2 mr-2"
+          >
             <i className="fas fa-plus"></i>
           </button>
           <span className="text-xl font-bold">{amount}</span>

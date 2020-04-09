@@ -1,22 +1,18 @@
-import React, { createContext, useReducer } from 'react';
-import steak from '../imgs/steak.jpg';
+import React, { createContext } from 'react';
+import { cartReducer } from './cartReducer';
+import useLocalStorageReducer from '../hooks/useLocalStorageReducer';
 
-const initCart = [
-  { id: '1', name: 'Steak', img: steak, price: 125, amount: 2 },
-];
-
-const cartReducer = (state, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+const initCart = [];
 
 export const CartContext = createContext();
 export const DispatchContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cart, dispatch] = useReducer(cartReducer, initCart);
+  const [cart, dispatch] = useLocalStorageReducer(
+    'carts',
+    initCart,
+    cartReducer
+  );
 
   return (
     <CartContext.Provider value={cart}>

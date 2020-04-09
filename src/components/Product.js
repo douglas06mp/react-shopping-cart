@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DispatchContext } from '../context/cart.context';
 import { useInputState } from '../hooks/useInputState';
+import { increment } from '../context/cartAction';
 
 export default function Product({ id, name, img, price }) {
   const [amount, changeAmount, reset] = useInputState(1);
+  const dispatch = useContext(DispatchContext);
 
-  const increment = (e) => {
+  const onIncrement = (e) => {
     e.preventDefault();
-    console.log(id, amount);
+    const product = {
+      id,
+      name,
+      img,
+      price,
+      amount: +amount,
+    };
+    dispatch(increment(product));
     reset();
   };
 
@@ -18,12 +28,13 @@ export default function Product({ id, name, img, price }) {
           <div className="font-bold text-l mb-2">{name}</div>
           <div className="">${price}</div>
         </div>
-        <form className="flex justify-between" onSubmit={increment}>
+        <form className="flex justify-between" onSubmit={onIncrement}>
           <input
             type="number"
             className="w-3/4"
             value={amount}
             onChange={changeAmount}
+            min="1"
           />
           <button
             type="submit"
