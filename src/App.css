@@ -9,13 +9,14 @@ button:link {
   outline: none;
 }
 
+/* FADE */
 .fade-enter,
 .fade-appear {
   opacity: 0;
 }
 
-.fade-enter.fade-enter-active,
-.fade-appear.fade-appear-active {
+.fade-enter-active,
+.fade-appear-active {
   opacity: 1;
   transition: opacity 0.4s ease-in;
 }
@@ -24,6 +25,31 @@ button:link {
   opacity: 1;
 }
 
-.fade-exit.fade-exit-active {
+.fade-exit-active {
   opacity: 0;
+}
+
+/* SLIDE */
+.slide-enter,
+.slide-appear {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+.slide-enter-active,
+.slide-appear-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s ease-in;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease-in;
 }
