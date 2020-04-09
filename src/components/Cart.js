@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { DispatchContext } from '../context/cart.context';
-import { increment } from '../context/cartAction';
+import { increment, decrement } from '../context/cartAction';
 
 export default function Cart({ id, name, img, price, amount }) {
   const dispatch = useContext(DispatchContext);
@@ -11,6 +11,10 @@ export default function Cart({ id, name, img, price, amount }) {
       amount: 1,
     };
     dispatch(increment(product));
+  };
+
+  const onDecrement = () => {
+    dispatch(decrement(id));
   };
 
   return (
@@ -34,7 +38,10 @@ export default function Cart({ id, name, img, price, amount }) {
             <i className="fas fa-plus"></i>
           </button>
           <span className="text-xl font-bold">{amount}</span>
-          <button className="bg-orange-500 hover:bg-orange-700 text-white text-sm rounded-full py-1 px-2 mx-2">
+          <button
+            onClick={onDecrement}
+            className="bg-orange-500 hover:bg-orange-700 text-white text-sm rounded-full py-1 px-2 mx-2"
+          >
             <i className="fas fa-minus"></i>
           </button>
           <button className="bg-red-600 hover:bg-red-700 text-white text-sm rounded-full py-1 px-2 ml-2">

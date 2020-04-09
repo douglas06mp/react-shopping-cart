@@ -1,10 +1,11 @@
-import { INCREMENT } from './cartAction';
+import { INCREMENT, DECREMENT } from './cartAction';
 
 export const cartReducer = (state, action) => {
+  let newState;
+  let targetProduct;
   switch (action.type) {
     case INCREMENT:
-      let newState;
-      const targetProduct = findProduct(state, action.product.id);
+      targetProduct = findProduct(state, action.product.id);
       if (targetProduct) {
         newState = [
           ...otherProduct(state, action.product.id),
@@ -18,6 +19,16 @@ export const cartReducer = (state, action) => {
         newState = [...state, action.product];
         return sortById(newState);
       }
+    case DECREMENT:
+      targetProduct = findProduct(state, action.id);
+      newState = [
+        ...otherProduct(state, action.id),
+        {
+          ...targetProduct,
+          amount: +targetProduct.amount - 1,
+        },
+      ];
+      return sortById(newState);
     default:
       return state;
   }

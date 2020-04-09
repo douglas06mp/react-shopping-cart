@@ -7,3 +7,10 @@ export const increment = (product) => {
     product,
   };
 };
+
+export const decrement = (id) => {
+  return {
+    type: DECREMENT,
+    id,
+  };
+};
