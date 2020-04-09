@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import { DispatchContext } from '../context/cart.context';
 import { increment, decrement, deletion } from '../context/cartAction';
 
-export default function Cart({ id, name, img, price, amount }) {
+function Cart({ id, name, img, price, amount }) {
   const dispatch = useContext(DispatchContext);
 
   const onIcrement = () => {
@@ -59,3 +59,5 @@ export default function Cart({ id, name, img, price, amount }) {
     </div>
   );
 }
+
+export default memo(Cart);
